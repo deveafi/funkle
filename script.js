@@ -1,5 +1,5 @@
 // --- Word lists ---
-const answers = ["funky"];
+const answers = ["funky","helps","audio"];
 const validGuesses = [
   ...answers,
    "aback", "abase", "abate", "abbey", "abbot", "abhor", "abide", "abled", "abode", "abort",
@@ -165,4 +165,33 @@ function checkGuess() {
     currentGuess = "";
     if (currentRow === 6) setTimeout(() => alert("Game over! Word was " + answer), 100);
   }
+  function endGame(win) {
+  stats.totalGames++;
+  if (win) {
+    stats.wins++;
+    stats.currentStreak++;
+    if (stats.currentStreak > stats.maxStreak) stats.maxStreak = stats.currentStreak;
+  } else {
+    stats.currentStreak = 0;
+  }
+  localStorage.setItem("wordleStats", JSON.stringify(stats));
+  updateStatsDisplay();
 }
+}
+
+let stats = JSON.parse(localStorage.getItem("wordleStats")) || {
+  totalGames: 0,
+  wins: 0,
+  currentStreak: 0,
+  maxStreak: 0
+};
+
+function updateStatsDisplay() {
+  document.getElementById("total-games").textContent = stats.totalGames;
+  document.getElementById("win-percent").textContent = stats.totalGames === 0 ? 0 : Math.round((stats.wins / stats.totalGames) * 100);
+  document.getElementById("current-streak").textContent = stats.currentStreak;
+  document.getElementById("max-streak").textContent = stats.maxStreak;
+}
+
+// Call this once on page load
+updateStatsDisplay();
