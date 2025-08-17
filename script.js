@@ -1,5 +1,12 @@
-const words = ["apple", "grape", "pearl", "crate", "stone"]; // word list
-const answer = words[Math.floor(Math.random() * words.length)];
+// --- Word lists ---
+const answers = ["apple", "grape", "pearl", "crate", "stone"];
+const validGuesses = [
+  ...answers,
+  "about","other","which","there","their","water","sound","place","plant","thing"
+]; // add more!
+
+// --- Pick answer ---
+const answer = answers[Math.floor(Math.random() * answers.length)];
 
 const board = document.getElementById("board");
 for (let r = 0; r < 6; r++) {
@@ -39,7 +46,13 @@ keyboardLayout.forEach(row => {
 
 function handleKey(key) {
   if (key === "Enter") {
-    if (currentGuess.length === 5) checkGuess();
+    if (currentGuess.length === 5) {
+      if (!validGuesses.includes(currentGuess)) {
+        alert("Not in word list!");
+        return; // reject invalid word
+      }
+      checkGuess();
+    }
   } else if (key === "Backspace") {
     currentGuess = currentGuess.slice(0, -1);
     updateRow();
