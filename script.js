@@ -1,6 +1,5 @@
 // --- Word lists ---
-const answers = [
-"funky"];
+const answers = ["funky"];
 const validGuesses = [
   ...answers,
    "aback", "abase", "abate", "abbey", "abbot", "abhor", "abide", "abled", "abode", "abort",
@@ -61,7 +60,7 @@ const validGuesses = [
   "gloom", "glory", "glove", "glow", "glue", "gnaw", "goal", "goat", "gold", "golf", "gone", "good",
   "gore", "gorge", "gory", "got", "gown", "gray", "gray", "gray", "gray", "gray", "gray", "gray",
   "gray", "gray", "gray", "gray", "gray", "gray", "gray", "gray", "gray", "gray", "gray", "gray",
-  "gray", "gray", "gray"
+  "gray", "gray", "gray","audio","helps"
 ]; // add more!
 
 // --- Pick answer ---
